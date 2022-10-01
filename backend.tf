@@ -1,6 +1,6 @@
 # Terraform Cloud configuration
 terraform {
-#  backend "remote" {
+  #  backend "remote" {
   cloud {
     organization = "The38Dev"
     workspaces {

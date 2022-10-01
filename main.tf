@@ -285,6 +285,21 @@ resource "azurerm_linux_virtual_machine" "mastervm" {
   tags = var.default_tags
 }
 
+resource "azurerm_dev_test_global_vm_shutdown_schedule" "mastervmsd" {
+  virtual_machine_id = azurerm_windows_virtual_machine.mastervm.id
+  location           = azurerm_resource_group.rg01.location
+  enabled            = true
+
+  daily_recurrence_time = "2359"
+  timezone              = "Mountain Standard Time"
+
+
+  notification_settings {
+    enabled = false
+
+  }
+  count = var.master_vm_count
+}
 
 # Worker node - public IP address
 resource "azurerm_public_ip" "workerpip" {
