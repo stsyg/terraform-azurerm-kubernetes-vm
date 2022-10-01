@@ -286,7 +286,7 @@ resource "azurerm_linux_virtual_machine" "mastervm" {
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "mastervmsd" {
-  virtual_machine_id = azurerm_windows_virtual_machine.mastervm.id
+  virtual_machine_id = azurerm_linux_virtual_machine.mastervm.id
   location           = azurerm_resource_group.rg01.location
   enabled            = true
 
