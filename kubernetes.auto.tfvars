@@ -3,10 +3,10 @@ rg_vnet     = "infra-network-rg"
 name_subnet = "infra-lab-k8s"
 
 
-prefix              = "kthw"
-environment         = "lab"
-location            = "canadacentral"
-ssh_public_key_file = "~/.ssh/id_rsa.pub"
+prefix      = "kthw"
+environment = "lab"
+location    = "canadacentral"
+#ssh_public_key_file = "~/.ssh/id_rsa.pub"
 master_vm_size      = "Standard_B1ms"
 master_vm_count     = 1
 master_disk_size_gb = 32

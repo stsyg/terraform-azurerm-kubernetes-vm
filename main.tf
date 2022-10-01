@@ -242,6 +242,12 @@ resource "azurerm_network_interface" "masternic" {
   tags = var.default_tags
 }
 
+# Create (and display) an SSH key
+resource "tls_private_key" "sshkey" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
 # Master node - virtual machine (VM)
 resource "azurerm_linux_virtual_machine" "mastervm" {
   name                  = "${var.prefix}-${var.environment}-mastervm0${count.index + 1}"
@@ -267,8 +273,9 @@ resource "azurerm_linux_virtual_machine" "mastervm" {
   }
 
   admin_ssh_key {
-    username   = "usr1"
-    public_key = file(var.ssh_public_key_file)
+    username = "usr1"
+    #    public_key = file(var.ssh_public_key_file)
+    public_key = tls_private_key.sshkey.public_key_openssh
   }
 
   count = var.master_vm_count
@@ -334,8 +341,9 @@ resource "azurerm_linux_virtual_machine" "workervm" {
   }
 
   admin_ssh_key {
-    username   = "k8susr"
-    public_key = file(var.ssh_public_key_file)
+    username = "k8susr"
+    #    public_key = file(var.ssh_public_key_file)
+    public_key = tls_private_key.sshkey.public_key_openssh
   }
 
   count      = var.worker_vm_count

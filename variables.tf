@@ -13,10 +13,10 @@ variable "location" {
   description = "Location name used in Azure resources naming convention"
 }
 
-variable "ssh_public_key_file" {
-  type        = string
-  description = "Public Key file location for SSH"
-}
+# variable "ssh_public_key_file" {
+#   type        = string
+#   description = "Public Key file location for SSH"
+# }
 
 variable "master_vm_size" {
   type        = string
