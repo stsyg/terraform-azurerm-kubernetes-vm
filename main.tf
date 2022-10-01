@@ -102,7 +102,7 @@ resource "azurerm_route_table" "rt01" {
 
 # Associate network route table to the subnet
 resource "azurerm_subnet_route_table_association" "k8subnet-rt01" {
-  subnet_id      = azurerm_subnet.k8subnet.id
+  subnet_id      = data.azurerm_subnet.k8subnet.id
   route_table_id = azurerm_route_table.rt01.id
 }
 
@@ -194,7 +194,7 @@ resource "azurerm_network_security_group" "nsg01" {
 
 # Associate network security group (NSG) to the subnet
 resource "azurerm_subnet_network_security_group_association" "k8subnet-nsg01" {
-  subnet_id                 = azurerm_subnet.k8subnet.id
+  subnet_id                 = data.azurerm_subnet.k8subnet.id
   network_security_group_id = azurerm_network_security_group.nsg01.id
 }
 
@@ -231,7 +231,7 @@ resource "azurerm_network_interface" "masternic" {
   enable_ip_forwarding = true
   ip_configuration {
     name                          = "primary"
-    subnet_id                     = azurerm_subnet.k8subnet.id
+    subnet_id                     = data.azurerm_subnet.k8subnet.id
     private_ip_address_allocation = "Static"
     private_ip_address            = "192.168.2.1${count.index + 1}"
     public_ip_address_id          = azurerm_public_ip.masterpip[count.index].id
@@ -299,7 +299,7 @@ resource "azurerm_network_interface" "workernic" {
   enable_ip_forwarding = true
   ip_configuration {
     name                          = "primary"
-    subnet_id                     = azurerm_subnet.k8subnet.id
+    subnet_id                     = data.azurerm_subnet.k8subnet.id
     private_ip_address_allocation = "Static"
     private_ip_address            = "192.168.2.2${count.index + 1}"
     public_ip_address_id          = azurerm_public_ip.workerpip[count.index].id
@@ -374,9 +374,9 @@ resource "azurerm_lb" "lb01" {
 
 # Network Load Balancer - backend address pool
 resource "azurerm_lb_backend_address_pool" "bap01" {
-  name                = "${var.prefix}-${var.environment}-bap01"
-  resource_group_name = azurerm_resource_group.rg01.name
-  loadbalancer_id     = azurerm_lb.lb01.id
+  name = "${var.prefix}-${var.environment}-bap01"
+  #  resource_group_name = azurerm_resource_group.rg01.name
+  loadbalancer_id = azurerm_lb.lb01.id
 }
 
 # network load balancer - associate network interface card of master nodes to backend address pool
@@ -390,8 +390,8 @@ resource "azurerm_network_interface_backend_address_pool_association" "bapa" {
 
 # Network Load Balancer - health probe
 resource "azurerm_lb_probe" "lbp01" {
-  name                = "${var.prefix}-${var.environment}-lbp01"
-  resource_group_name = azurerm_resource_group.rg01.name
+  name = "${var.prefix}-${var.environment}-lbp01"
+  #  resource_group_name = azurerm_resource_group.rg01.name
   loadbalancer_id     = azurerm_lb.lb01.id
   protocol            = "Http"
   request_path        = "/healthz"
@@ -419,14 +419,14 @@ resource "azurerm_lb_rule" "lbr01" {
 
 # Network Load Balancer - load balancing rule without health probe
 resource "azurerm_lb_rule" "lbr01noprobe" {
-  name                           = "${var.prefix}-${var.environment}-lbr01"
-  resource_group_name            = azurerm_resource_group.rg01.name
+  name = "${var.prefix}-${var.environment}-lbr01"
+  #  resource_group_name            = azurerm_resource_group.rg01.name
   loadbalancer_id                = azurerm_lb.lb01.id
   frontend_ip_configuration_name = "${var.prefix}-${var.environment}-apiserver"
   protocol                       = "Tcp"
   frontend_port                  = "6443"
   backend_port                   = "6443"
-  backend_address_pool_id        = azurerm_lb_backend_address_pool.bap01.id
+  #  backend_address_pool_id        = azurerm_lb_backend_address_pool.bap01.id
 
   # un-attach health probe
   count = var.enable_health_probe ? 0 : 1
