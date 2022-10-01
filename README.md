@@ -9,7 +9,7 @@ The following resources will be created:
 
 ## Prefix, environment and location variables
 these 3 variables help in naming the azure resources
-for e.g., resource group name: <PREFIX>-<ENVIRONMENT>-rg
-for e.g., master virtual machine name: <PREFIX>-<ENVIRONMENT>-mastervm01.<LOCATION_CODE>.cloudapp.azure.com
-for e.g., worker virtual machine name: <PREFIX>-<ENVIRONMENT>-workervm01.<LOCATION_CODE>.cloudapp.azure.com
-for e.g., network load balancer name: <PREFIX>-<ENVIRONMENT>-apiserver.<LOCATION_CODE>.cloudapp.azure.com
+- for e.g., resource group name: <PREFIX>-<ENVIRONMENT>-rg
+- for e.g., master virtual machine name: <PREFIX>-<ENVIRONMENT>-mastervm01.<LOCATION_CODE>.cloudapp.azure.com
+- for e.g., worker virtual machine name: <PREFIX>-<ENVIRONMENT>-workervm01.<LOCATION_CODE>.cloudapp.azure.com
+- for e.g., network load balancer name: <PREFIX>-<ENVIRONMENT>-apiserver.<LOCATION_CODE>.cloudapp.azure.com
