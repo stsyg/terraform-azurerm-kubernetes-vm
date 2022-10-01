@@ -19,7 +19,7 @@ variable "ssh_public_key_file" {
 }
 
 variable "master_vm_size" {
-  type        = number
+  type        = string
   description = "Control Plane VM size"
 }
 
@@ -39,7 +39,7 @@ variable "master_disk_size_gb" {
 }
 
 variable "worker_vm_size" {
-  type        = number
+  type        = string
   description = "Worker Node VM size"
 }
 
