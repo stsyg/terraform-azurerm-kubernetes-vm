@@ -46,55 +46,55 @@ resource "azurerm_route_table" "rt01" {
 
   route {
     name                   = "workervm01"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.1.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.21"
   }
   route {
     name                   = "workervm02"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.2.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.22"
   }
   route {
     name                   = "workervm03"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.3.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.23"
   }
   route {
     name                   = "workervm04"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.4.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.24"
   }
   route {
     name                   = "workervm05"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.5.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.25"
   }
   route {
     name                   = "workervm06"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.6.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.26"
   }
   route {
     name                   = "workervm07"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.7.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.27"
   }
   route {
     name                   = "workervm08"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.8.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.28"
   }
   route {
     name                   = "workervm09"
-    address_prefix         = "192.168.2.0/24"
+    address_prefix         = "10.200.9.0/24"
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "192.168.2.29"
   }
