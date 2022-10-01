@@ -275,7 +275,7 @@ resource "azurerm_linux_virtual_machine" "mastervm" {
   admin_ssh_key {
     username = "usr1"
     #    public_key = file(var.ssh_public_key_file)
-    public_key = "/home/${admin_ssh_key.username}/.ssh/authorized_keys/${tls_private_key.sshkey.public_key_openssh}"
+    public_key = "/home/usr1/.ssh/authorized_keys/${tls_private_key.sshkey.public_key_openssh}"
   }
 
   count = var.master_vm_count
